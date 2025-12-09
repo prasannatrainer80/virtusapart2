@@ -1,0 +1,109 @@
+JWT (Json Web Token) 
+
+	
+Authentication : Any request can be accessed after specifying proper username/password.
+
+Authorization : Once authenticated user has permission to access the particular resource or not comes with authorization. 
+
+JWT is a open standards that defines a self-contained way for securely transmitting information between parties as a JSON object.  This information can be verified and trusted because it digitally signed. 
+
+JWT contains main 3 main parts known as 
+
+(I) Header
+
+(II) Payload
+
+(iii) Signature 
+
+Header typically consists of 2 pars as type of token, and which algorithm we are using for that purpose 
+
+{
+   "alg":"HS256",
+   "typ":"JWT"
+}
+
+Payload is the second part of the token which contains statements about an entity and additional data 
+
+It contains 
+
+public claims
+
+registered claims
+
+private claims 
+
+Signature : 
+
+	To create the signature part you have to take the encoded header, the encoded payload, 
+
+To transfer the message from server-client then this signature takes vital role.
+
+
+How JWT Works 
+
+When user successfully logged in JWT will be returned. When user wants to access the protected resources, he needs to pass the JWT typically in Authorization header using the Bearer Schema, The content of the header should look like 
+
+Authoration : Bearer <Token>
+
+
+- The application requests the authorization server, this is performed through one of the different authorization flows, 
+
+- Once authorization granted, the authorization server returns an access token to the application
+
+- The application uses the access token to access protected resource 
+
+
+eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJQcmFzYW5uYSIsImlhdCI6MTc2NTI4MDE4NywiZXhwIjoxNzY1MjgxOTg3fQ.zh3drly6yeoCr1L6_MRNGNSsqkSs9LAz_4uWOOA3DlI
+
+Execution Steps : 
+_________________
+
+
+Post Method : 
+
+http://localhost:1133/auth/addNewUser
+
+{body}
+
+{
+ "name":"Karthik",
+ "password":"Karthik",
+ "email":"Karthik@gmail.com",
+ "roles":"ROLE_ADMIN"
+}
+
+Then user added with encr. passcode
+
+Post Method :
+
+http://localhost:1133/auth/generateToken
+
+{body}
+
+{
+    "username": "Karthik",
+    "password": "Karthik"
+}
+
+Then JWT token generated (Example)
+eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJQcmFzYW5uYSIsImlhdCI6MTc2NTI4MDE4NywiZXhwIjoxNzY1MjgxOTg3fQ.zh3drly6yeoCr1L6_MRNGNSsqkSs9LAz_4uWOOA3DlI
+
+
+To access the admin_resource 
+
+GET
+
+http://localhost:1133/auth/admin/adminProfile
+
+{Authorization}
+
+{Bearer Token} Pass jwt in textbox 
+
+
+Then you can get the output.
+
+
+
+
+
+

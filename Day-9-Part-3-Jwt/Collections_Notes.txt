@@ -1,0 +1,58 @@
+1) Which collection used to display records in Sorted Data
+
+SortedSet Interface and TreeSet class
+
+2) Which collection used to eliminate duplicate entries
+
+Set Interface with HashSet and LinkedHashSet 
+
+Diff between HashSet and LinkedHashset
+
+LinkedHashset comes n insertion order,
+Hashset in Hashing algorithm order
+
+If I have Employ class contains 
+duplicate records in Set interface how you
+will delete 
+
+Then we need to implement Object class methods
+
+hashCode()
+
+equals() 
+
+Treeset contains Employ Records (empno,name,salary) 
+
+Then how it will sort by default 
+
+We have to make Comparator implemented class
+
+void show(String...str)
+{
+   ....
+}
+
+show();
+show("Ankit");
+show("Ankit","Anusri");
+show("Ankit","Anusri","Lokesh");
+
+If you want to make any method to take varargs means
+
+0 to n args that it must be added with ...
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
