@@ -1,0 +1,18 @@
+1) Open GitHub Account
+
+2) Settings
+
+3) Developer Settings
+
+4) New Auth App
+
+Make 2 Urls as
+
+http://locahost:1212
+
+This is Callback Url
+http://locahost:1212/ogin/oauth2/code/github
+
+Generate Client Credentials 
+
+save project
