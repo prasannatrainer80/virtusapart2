@@ -28,6 +28,164 @@ AssertEquals(actual,expected);
 @AfterEach : This annotated method will be executed after every test case. 
 
 
+Junit inadequate to test the methods which connects to DB, as APIs etc...To implement them, we need the help of Mockito framework. 
+
+JMockIt is a open-source software that contains support for mocking, faking, and integration and testing, and a code coverage tool. It is used for mocking the external dependencies outside the test boundary
+
+The most important features of JmockIt is that it lets us mock anything, even the things that are hard to mock with other libraries such as private methods, constructors, static and final methods.  It allows you to mocking the member fields and initialization blocks as well.
+
+The test-case class must be prefixed with annotation
+
+@ExtendWith(MockitoExtension.class)
+
+Enables Mockito JUnit5 support
+   <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-junit-jupiter</artifactId>
+            <version>5.11.0</version>
+            <scope>test</scope>
+        </dependency>
+
+2. Inject Controller + Mock Service
+
+@InjectMocks
+private EmployController employController;
+
+@Mock
+private EmployService employService;
+
+Meaning:
+
+@Mock creates a fake EmployService.
+
+@InjectMocks injects this fake service into EmployController.
+
+
+🔹 3. MockMvc Setup
+private MockMvc mockMvc;
+
+@BeforeEach
+void setup() {
+    mockMvc = MockMvcBuilders.standaloneSetup(employController).build();
+}
+
+Purpose:
+
+Creates a standalone MockMvc instance.
+
+Only the controller is loaded, not the whole project.
+
+MockMvc allows us to test:
+
+✔ GET endpoints
+✔ POST endpoints
+✔ JSON responses
+✔ Status codes & fields
+
+----------------------------------
+🔵 Test 1 — showEmploy()
+----------------------------------
+@Test
+void testShowEmploy() throws Exception {
+
+Arrange (Mock the data):
+Employ e1 = new Employ(1, "Prasanna", "MALE", "Java", "Programmer", 50000);
+Employ e2 = new Employ(2, "Kumar", "MALE", "Java", "Manager", 99323);
+
+List<Employ> result = Arrays.asList(e1, e2);
+
+when(employService.showEmploy()).then Return(result);
+
+
+When controller calls employService.showEmploy(), return 2 fake employees.
+
+Act + Assert:
+mockMvc.perform(get("/employ/showEmploy"))
+        .andExpect(status().isOk())
+
+
+✔ Ensures HTTP 200 OK.
+
+Verify JSON Returned Fields
+.andExpect(jsonPath("$[0].empno").value(1))
+.andExpect(jsonPath("$[0].name").value("Prasanna"))
+.andExpect(jsonPath("$[0].gender").value("MALE"))
+.andExpect(jsonPath("$[0].dept").value("Java"))
+.andExpect(jsonPath("$[0].desig").value("Programmer"))
+.andExpect(jsonPath("$[0].basic").value(50000));
+
+
+----------------------------------
+🔵 Test 3 — searchEmploy()
+----------------------------------
+Setup Mock Response
+Employ e1 = new Employ(10, "Prasanna", "MALE", "Java", "Programmer", 50000);
+
+when(employService.searchEmploy(10)).thenReturn(e1);
+
+
+When controller calls service with empno 10 → return fake employee.
+
+Test GET /search/10
+mockMvc.perform(get("/employ/search/10"))
+        .andExpect(status().isOk())
+
+
+✔ Ensures endpoint is reachable.
+
+Validate JSON Returned
+.andExpect(jsonPath("$.name").value("Prasanna"))
+.andExpect(jsonPath("$.basic").value(50000));
+
+______________________________________________________________________________
+______________________________________________________________________________
+
+----------------------------------
+🔵 Test 2 — addEmploy()
+----------------------------------
+Mock the service method:
+when(employService.addEmploy(Mockito.any(Employ.class)))
+        .thenReturn("Employ Record Inserted...");
+
+
+Whenever controller sends an Employ object, return "Employ Added".
+
+JSON Request Body
+String jsonBody = """
+        {
+          "empno": 100,
+          "name": "Lokesh",
+          "gender": "MALE",
+          "dept":"Java",
+          "desig":"Manager",
+          "basic": 99323
+        }
+        """;
+
+
+This is the JSON that we will POST to the controller.
+
+Perform POST Request
+mockMvc.perform(post("/employ/addEmploy")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(jsonBody))
+        .andExpect(status().isOk())
+        .andExpect(content().string("Employ Record Inserted..."));
+
+
+✔ Sends JSON body
+✔ Expects HTTP 200
+✔ Expects response message "Employ Record Inserted..."
+
+⚠ Note:
+Your service returns "Employ Added" but controller returns "Employ Record Inserted...".
+
+You tested controller behavior correctly.
+
+
+
+
+
 
 
 
