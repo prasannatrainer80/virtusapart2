@@ -1,0 +1,179 @@
+1) What is OOPS
+
+     It is an approach that provides a way of modularizing programming, that which can be used to create small partition memory area for both data and objects, which are to be used as templates for creating copies of such modules on demand. 
+
+Object : An object is a real world entity, that which possess 3 characterstics as
+
+	(i) State
+
+	(ii) Behaviour
+
+	(iii) Identity
+
+class : A class is a template/blueprint, that which contains combination of data members and member functions.  Members of the class can be acessable by using instance of the class. 
+
+2) OOPS features
+
+   -> Encapsulation
+
+   -> Abstraction
+
+   -> Inheritance
+
+   -> Polymorphism 
+
+3) Java Features
+
+4) Java Architecture
+
+      1) Java Program : Java code stored with extension .java
+
+      2) Java Class : Java code after compilation it generates .class file.
+
+      3) JVM (Java Virtual Machine) 
+
+	   (a) Class Loader : Used to load all classes which required to run the program. 
+
+		 -> Primordial Class loader
+
+		 -> Class Loader Objects 
+
+	   (b) JIT Compiler : Converts the Bytecode into CPU specific format. 
+
+	   (c) Execution Manager : Contains QUEUE of programs which are ready to 		run, where we can execute the program, before execution it needs to 		undergone the security authentication
+
+      4) Java API : Provides runtime env. which allows you to run java code. (JDK/JRE) 
+
+5) Compiling and Execution procedure of java application
+
+	-> When you compile any java code, at first instead of converting into CPU specific code, it converts into bytecode
+
+	-> Then .class file will be created
+
+	-> Then it would be send to class loader, in Class loader JIT compiler 
+		converts the bytecode into CPU specific format
+
+	-> Then it would be send to execution manager, which contains QUEUE of programs ready to run where we can execute the program. 
+
+	-> Before execution needs to undergone security authentication. 
+
+6) What is STACK and HEAP
+
+    Local variables will be stored in STACK memory,
+    Reference variables will be stored in HEAP memory
+
+Stack memory size is small, and as data growing day by day, large amount of data w.r.t. Objects we cannot store in STACK, as we prefer HEAP memory.
+
+
+7) Arrays concept
+
+    -> What is Array
+
+    -> Array Referencing
+
+
+8) What is Boxing and Unboxing
+
+The concept of converting value types to reference types known as boxing, reference types to value types known as unboxing.
+
+Object is type that which can be used for boxing and unboxing. 
+
+The top level class in java is Object
+
+The default package in java is java.lang
+
+int x=12;
+
+Object ob1 = x;
+
+String type = ob1.getClass().getSimpleName();
+
+if (type.equals("Integer")) {
+  int x1= (Integer)ob1;
+}
+
+if (ob1 instanceof Integer) {
+   int x1 = (Integer)ob1;
+}
+
+
+9) What is Method Overloading
+
+The concept of using the same method name w.r.t. different data types or different parameters known as method overloading.  The method name must be same, but no.of parameters or type of parameters we are using here are different. 
+
+10) Object class methods 
+
+11) What is Constructor 
+
+A constructor is a special member which used to initialize the member variables of the class. It is special, because it has the same name as that of class name. 
+
+Rules :
+_______
+
+	(i) It will not contains any return type
+
+	(ii) It will not return any value
+
+	(iii) It will be invoked automatically once the instance of the class
+		created
+
+	(iv) A constructor can be overloaded. 
+
+12) Explain about static in detail (static class, static method
+and static variable static block)
+
+13) Explain about inheritance and polymorphism
+
+14) Abstract class in detail
+
+A class that which can be created, but not implemented and instantiated known as abstract class. Abstract class contains abstract/non-abstract methods, only abstract methods to be overrided mandatorily by the derived class. 
+
+abstract class Shape {
+..
+..
+}
+
+class Circle extends Shape {
+...
+..
+}
+
+class Square extends Shape {
+..
+..
+}
+
+class Rectangle extends Shape {
+...
+...
+...
+}
+
+Shape obj1 = new Circle();
+Shape obj2 = new Square();
+Shape obj3 = new Rectangle();
+
+Shape[] arr = new Shape[]{new Circle(), new Square(), new Rectangle()};
+
+15) interface methods static, final and default methods 
+
+Java does not support concept of multiple inheritance, to achieve this we need the help of interfaces. An interface contains method declaration and the implementation can be done in the corresponding class, you can add more than one interface to the particular class. 
+
+Difference between interface and abstract class : 
+__________________________________________________
+
+(i) An abstract class contains abstract and non-abstract methods, where interface contains only abstract methods.
+
+(ii) Interface methods are public and abstract by default.
+
+(iii) Multiple Inheritance can be achieved by using interfaces
+
+(iv) An interface can be called from anywhere to anywhere. 
+
+
+
+
+
+
+
+
