@@ -1,0 +1,48 @@
+
+Testing : Testing is a process in which defects are identified and subjected to rectification, at last we need to provide the defect free application to the client. 
+
+Quality : Quality always comes with customer perspective. 
+
+There are various ways of testing as
+
+1) Manual Testing
+
+2) Unit Testing : Can be done by the developers, as we need to check each corner case scenario at last we need to fix it. 
+
+In Java, Unit Testing Can be done using JUNIT
+
+For JUNIt we have org.junit is package that which allows
+you to implement Junit Testing.
+
+AssertEquals : This method checks the equality of values
+
+AssertEquals(actual,expected);
+
+@BeforeAll : this annotated method must be static as this method code executed only once in entire execution, runs once before all tests. As for database connections or memory allocation etc... we need to use this annotated method.
+
+
+@AfterAll : This annotated method must be static runs at before ending the program, as we need to write any memory releasing code etc...
+
+@BeforeEach : This annotated method will be executed beginning of every test case.
+
+@AfterEach : This annotated method will be executed after every test case. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
