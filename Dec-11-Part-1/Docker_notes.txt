@@ -1,0 +1,44 @@
+
+
+Docker is a centralized platform for packaging, deploying and running applications. Before docker many users face problem that a particular code is running in dev system but not in production env. 
+
+To avoid this issues deploy the application and ship them into containers, and can 
+be run anywhere. 
+
+Definition : Docker is a open-source centralized platform designed to create, deploy and run the applications. Docker uses container on the host's operating system to run applications.  It allows applications to use the same Linux Kernel as a system on the host computer. 
+
+Docker includes components such as Docker Client, Docker Server, Docker Machine, Docker Hub, Docker Composes etc...
+
+Docker Containers 
+
+	Docker containers are the lightweight alternatives of the virtual machine. It allows developers to package up the application with all its libraries and dependencies, and ship it as a single package. The advantage of using a docker container is that you don't need to allocate any RAM. It automatically generates storage and space according to the application requirement. 
+
+
+   -> Docker allows to easily install and run software without worrying about dependencies.
+
+   -> Docker allows you to eliminate problem as "code worked in my system" when working on code together with co-workers
+
+   -> Docker securely build software delivery pipelines, to ship new applicatioin features faster and more securely.
+
+Docker Architecture : 
+
+Docker daemon runs on the host operating system, it is responsible for running containers to manage docker services. Docker daemon communicates with other daemons, it offers various Docker objects such as images, containers, networking and storage etc...
+
+1) Docker Client 
+
+	Docker client uses commands and RES APIs to communicate with Docker Daemon. When client runs any docker command on the docker client terminal, the client terminal sends these docker commands to the Docker daemon.
+
+2) Docker HOst 
+
+	Used to provide env to execute and run applications
+
+3) Docker Registry
+
+	Manages and stores the docker images
+
+
+
+
+
+
+
