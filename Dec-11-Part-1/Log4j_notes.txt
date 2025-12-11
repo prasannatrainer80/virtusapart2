@@ -1,0 +1,18 @@
+Log4j is a java-based logging framework widely used for tracking the flow of applications and maintaining logs. It is part of apache logging services project and is known for its flexibility, performance, and extensibility.  Log4j supports various output targets such as files, consoles, databases, and more, making it a versatile choice for logging in java applications. 
+
+Key Components of Log4J : 
+_________________________
+
+   -> Loggers : Capture log messages and forward them to the appropriate output targets, logges can be created using Logger.getLogger(class) 
+
+   -> Appenders : Defines where the log messages are stored. 
+
+   -> Layouts : Format log messages before output.  For example, you can include timestamps or log levels in the output.
+
+   -> Logging Levels : Control the importance of log messages, Levels include TRACE, DEBUG, INFO, WARN, ERROR and FATAL 
+
+   -> Filters : Allows fine-grained control over which log messages are output based. 
+
+
+
+
