@@ -1,0 +1,144 @@
+Step 1 : Create a maven console project 
+
+Create a file as HelloWorld.java in package and write the below code
+
+package org.java.sb;
+
+public class HelloWorld {
+
+  public static void main(String[] args) {
+    System.out.println("Welcome to Docker Programming...Thank You...");
+  }
+}
+
+Step 2 : Create a file with no extension as "Dockerfile" and write the below code
+
+FROM eclipse-temurin:17-jdk
+
+WORKDIR /app
+
+# Copy source code
+COPY src ./src
+
+# Compile Java program
+RUN javac src/main/java/org/java/sb/HelloWorld.java -d out
+
+# Set default command
+CMD ["java", "-cp", "out", "org.java.sb.HelloWorld"]
+
+*** Edit the package names accordingly ***
+
+Step 3: From IntelliJ maven please run the command as 
+mvn clean package 
+
+Step 4 : Open a command prompt and write the code to build image (image name no capital letters)
+
+docker build -t spring-docker-demo .
+
+Step 5 : To run the image 
+
+docker run spring-docker-demo 
+
+____________________________________________________________________________
+
+Example 2 Scanner 
+
+1) Create a Maven Project (Console) 
+
+2) Create a file as Input.java and write the below code
+
+package org.java.sb;
+
+import java.util.Scanner;
+
+public class Input {
+
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    System.out.print("Enter Your Name    ");
+    String name = sc.nextLine();
+    System.out.print("Name is  " +name);
+    sc.close();
+
+  }
+}
+
+3) Create a Dockerfile and write the below code
+
+FROM eclipse-temurin:17-jdk
+
+WORKDIR /app
+
+# Copy source code
+COPY src ./src
+
+# Compile Java program
+RUN javac src/main/java/org/java/sb/Input.java -d out
+
+# Set default command
+CMD ["java", "-cp", "out", "org.java.sb.Input"]
+
+4) Run the mvn clean package command
+
+5) Open command prompt and build the image as
+
+docker build -t dockerhello2 .
+
+6) To run the image, then 
+
+docker run -it dockerhello2 
+
+*** -it ensures its in interactive mode ***
+
+_______________________________________________________________________
+
+How to run sb project in Docker 
+
+1) Create a SB project and make a controller in that as (select type jar)
+
+HelloController.java
+
+package org.java.sb;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class HelloController {
+
+    @GetMapping("/hello")
+    public String hello() {
+        return "Hello from Docker!";
+    }
+}
+
+2) Run command from mvn console as mvn clean package 
+
+2) Create a Dockerfile and write the below code 
+_______________________________________________________________
+# Step 1: Base image
+FROM eclipse-temurin:17-jdk
+
+# Step 2: Working directory
+WORKDIR /app
+
+# Step 3: Copy JAR
+COPY target/spring-docker-demo-1-0.0.1-SNAPSHOT.jar app.jar
+
+# Step 4: Expose port
+EXPOSE 8080
+
+# Step 5: Run application
+ENTRYPOINT ["java","-jar","app.jar"]
+_____________________________________________________________
+
+______ Please edit the jar file name accordingly 
+
+Step 3 : Open the command prompt and make docker image as
+
+docker build -t spring-docker-demo .
+
+Step 4 : To run Sb project as its configured in 8080 port then
+
+docker run -p 8080:8080 spring-docker-demo
+
