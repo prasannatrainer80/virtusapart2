@@ -1,0 +1,182 @@
+
+1) What is the Purpose of Collection Framework 
+
+Arrays are static data structures as once assigned we cannot alter the size, if you want to add the elements irrespective of size, then we need the help of collections. 
+
+Collections can grow to any size unlike arrays. 
+
+1) List : If you want to store list of records then we need List interface. 
+
+	ArrayList, Vector are falling under this.
+
+ArrayList methods are not synchronized/threadsafe. 
+
+ 
+2) Set
+
+3) SortedSet 
+
+What is the advantage of collections with generics 
+
+Generics implements Type Safety
+
+Provides Security to the Data
+
+No Typecasting
+
+Reduces the size of code. 
+
+Generics provides dynamic feature Code-bloat 
+
+As Assume if I have method as 
+
+class<T> {
+   void show(T t) {
+    ...
+    ...
+  }
+}
+
+show(12);
+show("Hello");
+show('X');
+show(12.5);
+
+Then JVM generates methods w.r.t. Data Types as 
+
+show(int)
+show(String)
+show(char)
+show(double) 
+
+Map interface is outside the collections framework, to store any key/value pair of information. 
+
+
+Practice some programs in HashTable and HashMap 
+
+Iterate HashTable/HashMap data. 
+
+
+Write a code to implement authentication 
+
+____________________________________________________________________
+
+JDK 8 features : 
+
+-> Functional Interface : If an interface contains only one abstract method, known as functional interface, You can define that by using @FunctionalInterface. 
+
+As once you create an object to that the corresponding method gets executed automatically. 
+
+@FunctionalInterface
+public interface ICalc {
+   int calc(int a, int b);
+   static void trainer() {
+      System.out.println("Trainer is Prasanna...");
+   }
+   default void company() { 
+	System.out.println("Virtusa...");
+   }
+}
+
+Example2 : 
+
+@FunctionalInterface
+public interface ICalc {
+   int calc(int a, int b);
+   default int calc(int x, int y) {
+	return x * y;
+   }
+}
+
+Can we extend FI with another FI 
+
+@FunctionaInterface
+public interface Demo extends ICalc {
+
+}
+
+-> Lambda Expresssion
+
+   -> Avoids writing anonymous implementation
+   -> Saves lot of code
+   -> Code is directly readable without interpretation
+
+ICalc obj1 = (a,b) -> return a + b;
+ICalc obj2 = (a,b) -> return a - b;
+ICalc obj3 = (a,b) -> return a * b;
+
+
+-> Explain some predefined Functional Interfaces in java 
+
+Cpmparator
+Comparable
+Runnable
+Callable
+
+->  Explain In FI 
+
+Function
+
+	Function interface take one argument and returns as result. Mostly any data transmissions to be taken place, then we need the help of Funciton 
+
+Function<Integer,Integer> powerex = (x) -> x * x;
+
+powerex(12);
+
+Function<Integer,String> show = (x) -> {
+   if (x%2==0) { "Even" } else { "odd" }
+};
+
+Predicate : This interface represents the Boolean valued function of one arg, commonly used for filtering operations in streams. 
+
+public interface Predicate<T> {
+    boolean test(T t);
+}
+
+Predicate<String> pred = (s) -> s.startsWith("h");
+
+List<String> names = Arrays.asList("Lokesh","Shaili","Bharathi","Harsh","Karthik");
+
+for(String s : names) {
+    if(pred.test(s)) {
+	System.out.prinltn(s);
+    }
+}
+
+Consumer : It is a functional interface one that accepts only one argument, used for performing action, such as printing and logging. 
+
+Consumer<String> greeting = s -> System.out.println("Welcome to Mr/Miss/Mrs " +s);
+
+greeting.accept("Lokesh");
+
+Consumer<Integer> power = s -> System.out.println("Square " + (s * s));
+
+List<Integer> numbers = Arrays.asList(12,44,22,82,34);
+
+numbers.forEach(power);
+
+
+Supplier : This Functional Interface does not take any input or argument and yet returns a single ouput. 
+
+Supplier<String> greeting = () -> "Welcome to Mock Session";
+
+System.out.println(greeting.get());
+
+Supplier<LocalDateTime> today = () => LocalDateTime.now();
+
+LocalDateTime time = today.get();
+
+System.out.println(time);
+
+
+
+-> Stream API
+
+-> Method Reference
+
+-> Optional Class
+
+-> Date/Time Api
+
+
+
