@@ -1,0 +1,42 @@
+Spring Boot - Circuit Breaker Pattern with Resilience4j
+
+Circuit breaker is a pattern that prevents cascading failures in microservices by stopping requests to a failing service once errors exceed a threshold, ensuring system stability with greatful fallbacks. Resilience4j is a lightweight java library inspired by Hystrix, offering circuit breaker, rate limiter, Bulkhead and Retry patterns for building resilient applications.
+
+
+
+
+Circuit-Breaker acts as a fail-safe mechanism to prevent repeated from propagating in your system. It "breaks the circuit" when a service is unresponsive  consistently failing, allowing the system to fail fast and recover gracefully. 
+
+How the Circuit Breaker Works 
+
+	-> Closed State : All requests pass through, if failures reach a defined threshold, the circuit opens. 
+
+	-> Open State : Requests are blocked, after a timeout, the circuit transitions to half-open
+
+	-> Half-Open State : A limited no.of test requests are allowed, If successful, the circuit closes, if they fail it opens again
+
+Benefits of Using Circuit Breakers 
+
+	-> Prevents Cascading Failures : Isolates failures to avoid the chain reaction
+
+	-> Graceful Degradation : Provides fallback responses to maintain a good user experience
+
+	-> Improves the System Stability : Stops repeated attempts to execute failing operations. 
+
+For Resilience4j 
+
+  The key properties/parameters ar 
+
+failureRateThreasHold : Percentage of failures before opening a circuit
+SlidingWindowSize  Size of the sliding window for calculating failure rate.
+minimumNumberOfCalls : Minimum requests before calculating failure rate.
+waitDurationInOpenState : duration the circuit stays open before half-opening
+permittedNumberOfCallsInHalfOpenState : Test Calls, allowed in half-open state.
+
+
+
+
+
+
+
+
