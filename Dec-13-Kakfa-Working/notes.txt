@@ -1,0 +1,25 @@
+
+Kafka is a platform for streaming high-throughput, real time data pipelines. It supports the publication, storage and processing of records streams in a fault-tolerant way. 
+
+Kafka is a publish-subscribe messaging system, used to send messages between processes, applications and servers.  Apache Kafka is a software where we need to create a context (topic) can be defined further processed. 
+
+Applications may connect to this system and transfer message onto the topic. 
+
+A message can include any kind of information from any event on your blog or can be very simple text message. 
+
+Core Components of Apache Kafka are 
+
+-> Kafka Broker
+
+    It is a server that runs Kafka and stores data, Typically a kafka cluster consists of multiple brokers that work together to provide scalability 
+
+-> Producers : It is a service that sends the messages to Kafka topic , these processes push data into the kafka system. Producers describe which topic the message should go to and kafka efficiently handles if based on strategry. 
+
+-> Kafka Topic : Is a category or feed name to which messages are published. Kafka messages are always associated with topics.  And when you want to send a message, you send it to the specific topic. Topics are divided into partitions which allows kafka to scale and handle large amount of data. 
+
+-> Consumers and Consumer Groups  : Consumer daemon reads the messages from kafka topics, allows consumer groups, where multiple consumers can read from the same topic, but kakfa ensures that each message is processed by only one consumer in the group. 
+
+Partitions allow you to split the data in a particular topic across multiple brokers.
+
+-> Zookeeper : Kafka uses apache zookeepers to manage metadata, controls access and resources. Zookeeper ensures high availability by making sure the Kafka cluster remains functional even if a broker fails. 
+
