@@ -1,0 +1,101 @@
+Step 1: Install Java (REQUIRED)
+
+Kafka 4.x requires Java 17+
+
+✔ Check Java
+java -version
+
+
+Expected:
+
+java version "17.x"
+
+❌ If Java not installed
+
+Download & install JDK 17:
+👉 https://adoptium.net/temurin/releases/
+
+✔ After install, reopen CMD and recheck java -version
+
+🔹 Step 2: Download Kafka
+
+Go to:
+👉 https://kafka.apache.org/downloads
+
+Download Binary download (Scala 2.13)
+Example:
+
+kafka_2.13-4.1.1.tgz
+
+🔹 Step 3: Extract Kafka (.tgz) on Windows
+✔ Using 7-Zip (Recommended)
+
+Right-click .tgz
+
+Extract Here → gives .tar
+
+Right-click .tar
+
+Extract Here
+
+Final folder:
+
+D:\kafka_2.13-4.1.1
+
+🔹 Step 4: Open Command Prompt
+D:
+cd D:\kafka_2.13-4.1.1
+
+🔹 Step 5: Generate Kafka Cluster ID (KRaft)
+bin\windows\kafka-storage.bat random-uuid
+
+
+Example output:
+
+Z0plYTqjQMSN6yKT8Y6X-Q
+
+
+📌 Copy the UUID
+
+🔹 Step 6: Format Kafka Storage (MANDATORY)
+⚠️ This step is REQUIRED for Kafka 4.x
+
+bin\windows\kafka-storage.bat format --config config\kraft\server.properties --cluster-id Z0plYTqjQMSN6yKT8Y6X-Q
+
+
+✔ Expected:
+
+Successfully formatted log directories
+
+🔹 Step 7: Start Kafka Server
+bin\windows\kafka-server-start.bat config\kraft\server.properties
+
+
+✔ Kafka will start on:
+
+localhost:9092
+
+🔹 Step 8: Verify Kafka is Running
+
+Open NEW CMD window:
+
+bin\windows\kafka-topics.bat --bootstrap-server localhost:9092 --list
+
+
+✔ No error = Kafka is running 🎉
+
+🔥 Kafka Basic Test (Optional but Recommended)
+✔ Create Topic
+bin\windows\kafka-topics.bat --bootstrap-server localhost:9092 --create --topic test-topic --partitions 1 --replication-factor 1
+
+✔ Start Producer
+bin\windows\kafka-console-producer.bat --bootstrap-server localhost:9092 --topic test-topic
+
+
+Type messages and press Enter.
+
+✔ Start Consumer (new CMD)
+bin\windows\kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic test-topic --from-beginning
+
+
+✔ Messages should appear 🎉
