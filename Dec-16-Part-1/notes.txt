@@ -1,0 +1,100 @@
+What is CI/CD 
+
+Continuous Integration and Continuous Deployment is the backbone of modern Devops. Bridging the gap between development and operations by automating the building, testing and deploy the applications. 
+
+Before that, releasing a software is high-stress day occurring once a month or quarter, with CI/CD releasing software becomes a routing, non-event that happens multiple times a day. 
+
+Before CI/CD
+
+All the branches were merged at the end, which often caused big conflicts and broken builds, testing and building the code were also manual, usually done at the final stages, so bugs were discovered very late and were costly to fix. 
+
+Deployment was a long an risky process, taking days or sometimes weeks, because everything was released together in one big update.
+
+Teams were also divided: developers wrote code, testers tested it. And Operations managed servers. 
+
+These challenges you have to overcome, then CI/CD came in the picture. 
+
+With CI/CD, the whole process became faster, automated and more reliable, developers now commit their code frequently to a shared main branch, which prevents conflicts and ensures smooth integration. 
+
+After CI/CD
+____________
+
+Automated pipelines run tests, builds and checks as soon as code pushed, so errors are caught early, Continuous Delivery makes sure that tested code is automatically packaged and ready for deployment. 
+
+While Continuous Deployment takes it a step further by directly releasing to production without manual steps.  This means smaller, frequent updates instead of one big risky release 
+
+
+We can use Git, Jenkins or Docker and Kubernates to automate everything from building to deployment, making the workflow transparent. 
+
+The Three pillers of CI/CD are 
+
+1) Continuous Integration (CI)
+
+	The Goal : To Prevent "Integration issues"
+
+		   Developers merge their changes back to the main branch as often 			as possible (daily)
+		   Upon every commit, an automated system builds the code and runs unit tests, if test fails build gets rejected. 
+
+2) Continuous Delivery (CD)
+
+	Goal to release at any moment
+	 After CI passes, the code is automatically deployed to a staging/testing environment. Expensive integration and load tests are run
+	The codebase is always in a deployable state, but the "push to production is manual decision (e.g. a "Deploy" button click by authority)
+
+3) Continuous Deployment (CD) 
+
+How the Work process happens : 
+______________________________
+
+When developer saves (commit) their codes to a version control system, like GIT, the CI pipeline starts, it takes the new changes, builds the project, and runs test automatically. After that, the sever tells the developer if adding the new code to existing code worked or failed. 
+
+   This helps find and fix bugs faster, saves developers from doing the same tasks again and again, and allows the team to release updates to customers more often. 
+
+What Is CI/CD Pipeline 
+
+CI/CD is the way of working where developers can make many code changes and deliver updates quickly.
+
+CI/CD Pipeline : This is the actual step-by-step process that takes the code and automatically moves it from development to live production. 
+
+The major components of CI/CD are 
+
+-> Commit Change
+
+	Developers make the code changes and commit these changes to a version control system. This step initiates the CI/CD pipeline. Committing code changes ensures that they are tracked and versioned properly.
+
+-> Trigger Build
+
+	The version control detects the new commit and triggers the build process automatically, Automated triggering of the build process ensures that new changes are continuously integrated and tested.
+
+-> Build
+
+	The codebase is compiled and built into a deployable artifact, such as a binary executable or a Docker image, Common tools like Maven, Gradle, Ant for java projects, and Docker for container based applications. 
+
+-> Notify of Build Outcome
+
+	The CI/CD system notifies the team of a build results, whether it passed or failed. Immediate feedback on the build status helps developers quickly and resolve any build issues.  Notification systems can include emails, chat integrations etc...
+
+-> Run Tests
+
+	Automated tests are executed on the build artifact. These can include unit tests, integration tests, end-to-end tests, and more.  Testing frameworks like JUnit, Selenium etc...
+
+-> Notify of Test Outcome
+
+	The results of ;the test suite are repored back to the development team, Quick feedback on test outcomes allows developers to address any failures promptly.  
+
+-> Deliver Build to Staging
+
+	If test pass, then build artifact is deployed to a staging env, then it simulates the production env.
+
+-> Deploy to Production
+
+-> After successful validation in staging, the build automatically or manually prompted to the production env, this step makes the new features and fixes available to end-users. Deployment strategies might include blue-green deployment.
+
+
+
+
+
+
+
+
+

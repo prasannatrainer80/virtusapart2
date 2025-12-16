@@ -52,7 +52,7 @@ bin\windows\kafka-storage.bat random-uuid
 
 Example output:
 
-Z0plYTqjQMSN6yKT8Y6X-Q
+4b8BZShCQ9yPlRlUd-TODg
 
 
 📌 Copy the UUID
@@ -60,7 +60,7 @@ Z0plYTqjQMSN6yKT8Y6X-Q
 🔹 Step 6: Format Kafka Storage (MANDATORY)
 ⚠️ This step is REQUIRED for Kafka 4.x
 
-bin\windows\kafka-storage.bat format --config config\kraft\server.properties --cluster-id Z0plYTqjQMSN6yKT8Y6X-Q
+bin\windows\kafka-storage.bat format --config config\kraft\server.properties --cluster-id 4b8BZShCQ9yPlRlUd-TODg
 
 
 ✔ Expected:
