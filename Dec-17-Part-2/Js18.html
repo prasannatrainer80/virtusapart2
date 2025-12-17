@@ -1,0 +1,44 @@
+<html>
+    <head>
+        <title>Online Exam Paper</title>
+        <script>
+            var quesionts = 
+            [
+                    "1. HTML Stands for",
+                    "2. WWW stands for",
+                    "3. Is Java Platform Independent",
+                    "4. Javscript is Object Oriented ???",
+                    "5. HTTP Stands For..."
+            ];
+            var questionNo = 0;
+            var totalQuestions = quesionts.length;
+            function nextQuestion() {
+                questionNo++;
+                if (questionNo == totalQuestions) {
+                    questionNo = totalQuestions -1;
+                    // alert(ques
+                    alert("No Questions after this...");
+                }
+                loadQuestion();
+            }
+
+            function prevQuestion() {
+                questionNo--;
+                if (questionNo < 0) {
+                    alert("No Questions Before that...");
+                    questionNo = 0; 
+                }
+                  loadQuestion();
+            }
+            function loadQuestion() {
+                document.getElementById("question").innerHTML = quesionts[questionNo];
+            }
+        </script>
+    </head>
+<body onload="loadQuestion()">
+    <span id="question"></span> <br/><br/>
+    <input type="button" value="Next Question" onclick="nextQuestion()" /> 
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <input type="button" value="Prev Question" onclick="prevQuestion()" />
+</body>
+</html>
