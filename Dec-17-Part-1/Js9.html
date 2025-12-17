@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <script>
+            function show() {
+                var result = "";
+                if (frmAttendance.chkAnkit.checked==true) {
+                    result+="Ankit is Present Today...<br/>".fontcolor("green");
+                } else {
+                    result+="Ankit is Absent Today...<br/>".fontcolor("red");
+                }
+                if (frmAttendance.chkMeghana.checked == true) {
+                    result+="Meghana is Present Today...<br/>".fontcolor("green");
+                } else {
+                    result+="Meghana is Absent Today...<br/>".fontcolor("red");
+                }
+                if (frmAttendance.chkShaili.checked == true) {
+                    result+="Shaili is Present Today...<br/>".fontcolor("green");
+                } else {
+                    result+="Shaili is Absent Today...<br/>".fontcolor("red");
+                }
+                document.getElementById("result").innerHTML = result;
+            }
+        </script>
+    </head>
+<body>
+    <form name="frmAttendance">
+        <center>
+            Ankit : 
+            <input type="checkbox" name="chkAnkit" onchange="show()" /> <br/><br/>
+            Meghana : 
+            <input type="checkbox" name="chkMeghana" onchange="show()" /> <br/><br/>
+            Shaili :
+            <input type="checkbox" name="chkShaili" onchange="show()" /> <br/><br/>
+            <span id="result"></span>
+        </center>
+    </form>
+</body>
+</html>
