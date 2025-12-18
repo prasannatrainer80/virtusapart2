@@ -1,0 +1,22 @@
+<html>
+    <head>
+        <script>
+            const fetchData = () => {
+                console.log("Fetching Data...");
+                setTimeout(() => {
+                    return "Name is Prasanna, Designation Trainer";
+                }, 2000)
+            }
+
+            async function showData()  {
+                const data = await fetchData(); // waits without blocking other tasks 
+                console.log("Data Received  " +data);
+            }
+        </script>
+    </head>
+<body>
+    <script>
+        showData();
+    </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <script>
+            const sum = () => {
+                var firstNo, secondNo, result;
+                firstNo = parseInt(frmCalc.firstNo.value);
+                secondNo = parseInt(frmCalc.secondNo.value);
+                result = firstNo + secondNo;
+                var res = document.createElement("span");
+                res.innerHTML = "Sum is  " +result;
+                document.body.appendChild(res);
+            }
+        </script>
+    </head>
+<body>
+    <form name="frmCalc">
+        <center>
+            First Number : 
+            <input type="number" name="firstNo" /> <br/><br/>
+            Second Number : 
+            <input type="number" name="secondNo" /> <br/><br/>
+            <input type="button" value="Sum" onclick="sum()" /> <br/><br/>
+        </center>
+    </form>
+</body>
+</html>

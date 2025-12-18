@@ -1,0 +1,47 @@
+<html>
+    <head>
+        <script>
+
+            const sum = () => {
+                let firstNo = frmCalc.firstNo.value;
+                let secondNo = frmCalc.secondNo.value; 
+                let res = firstNo + secondNo;
+                return res;
+            }
+
+            const sub = () => {
+                let firstNo = frmCalc.firstNo.value;
+                let secondNo = frmCalc.secondNo.value; 
+                let res = firstNo - secondNo;
+                return res;
+            }
+
+            const mult = () => {
+                let firstNo = frmCalc.firstNo.value;
+                let secondNo = frmCalc.secondNo.value; 
+                let res = firstNo * secondNo;
+                return res;
+            }
+
+            const result = () => {
+                var res ="";
+                res+="Sum is  " +sum() + "<br/>";
+                res+="Sub is  " +sub() + "<br/>";
+                res+="Mult is  " +mult() + "<br/>";
+                document.getElementById("result").innerHTML= res;
+            }
+        </script>
+    </head>
+<body>
+    <form name="frmCalc">
+        <center>
+            First Number : 
+            <input type="number" name="firstNo" /> <br/><br/>
+            Second Number : 
+            <input type="number" name="secondNo" /><br/><br/>
+            <input type="button" value="Show" onclick="result()" /> <br/><hr/>
+            <span id="result"></span>
+        </center>
+    </form>
+</body>
+</html>

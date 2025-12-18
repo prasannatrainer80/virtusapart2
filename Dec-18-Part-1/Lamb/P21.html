@@ -1,0 +1,23 @@
+
+<html>
+    <head>
+        <script>
+            var count = 0;
+            const greeting = () => {
+                alert("Hi How are You..." +count);
+                clearIt();
+            }
+           
+            const clearIt = () => {
+                count++;
+                if (count==5) {
+                    clearInterval(win);
+                }
+            }
+            var win= setInterval(greeting, 5000);
+        </script>
+    </head>
+<body onload="greeting()">
+    
+</body>
+</html>

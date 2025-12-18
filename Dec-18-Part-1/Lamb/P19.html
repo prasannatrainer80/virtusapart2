@@ -1,0 +1,23 @@
+<html>
+    <head>
+        <script>
+
+            function calc() {
+                var myWindow = window.open("P1.html","Program 1","width=400, height=500");
+            }
+            function show() {
+                var myWindow = window.open("","MsgWindow","width=200, height=200");
+                myWindow.document.write("<p>This is Sample popup Window</p>");
+                myWindow.document.write("<p>From Virtusa FSD Training Batch...</p>");
+                setTimeout(function() {
+                    myWindow.close();
+                }, 5000);
+            }
+        </script>
+    </head>
+<body>
+    <input type="button" value="Show Window" onclick="show()" />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <input type="button" value="Program 1" onclick="calc()" />
+</body>
+</html>
