@@ -1,0 +1,130 @@
+static variables retains values irrespective of type of object.  Static variables are class variables, can be accessable by using class name. 
+
+These variables can be modified by any instance, the changes will show in all other instances. 
+
+public class StaticEx
+{
+    static int count;
+    public void increment() {
+	count++;
+	System.out.println(count);
+   }
+   public static void main(String[] args) {
+	StaticEx obj1 = new StaticEx();
+	StaticEx obj2 = new StaticEx();
+	StaticEx obj3 = new StaticEx();
+	obj1.increment();
+	obj2.increment();
+	obj3.increment();
+  }
+}	
+
+public class Cricket {
+
+    static score;
+    public void increment(int x) {
+	score+=x;
+    }
+     
+    public static void main(String[] args) 
+    {
+	Cricket fb = new Cricket();
+        Cricket sb = new Cricket();
+        Cricket ext = new Cricket();
+	fb.increment(12);
+	sb.increment(72);
+        ext.increment(11);
+	System.out.println(Cricket.score);
+    }
+}
+
+___________________________________________________________________
+
+What is the difference between hashCode() and equals() 
+
+hashCode() returns integer value, this method can be overridable, as if ensure multiple objects needs to points to same memory location, then we need to override hashCode() method with combination of equals() 
+
+The difference we make as
+
+class Employ {
+	int empno;
+	String name;
+	double basic;
+}
+
+Employ e1 = new Employ(1,"Subham",84234);
+Employ e2 = new Employ(1,"Subham",84234);
+
+System.out.println(e1==e2);
+System.out.println(e1.equals(e2));
+
+Assume, we have Employ class contains 3 attributes as (empno,name,basic) and I want to check 2 objects with same values, 
+
+then by default == and equals() returns false. 
+
+Then, we need to override hashCode() and equals() method, then
+
+equals() returns true.
+
+equals() method override contains on which parameter basis we have to check for the equality. 
+
+__________________________________________________________________
+
+What is difference between abstract class and interface 
+
+Abstract class is a class that which can be created, but not implemented and instantiated.  We cannot create an object to the abstract class. Abstract class contains abstract and non-abtract methods, abstract methods needs to be overrided mandatorily by the derived class. 
+
+If no object created, then why we need abstract class ???
+
+Top-level class needs to have control over derived classes as some of the methods to be implemented mandatorily, then we need abstract class.
+
+Example : If you want to travel in flight, as we need idProof and ticket mandatory, 
+
+then we need to make Flight class as an Abstract class 
+
+abstract class Flight {
+    public void idProof();
+    public void ticket();
+}
+
+Assume, in Flight category we have Indigo, JetAirways, IndianAirlines are there then all derived classes needs to implement the above 2 methods mandatory.  
+
+class Indigo extends Flight {
+
+}
+
+class JetAirways extends Flight {
+ 
+}
+
+class IAir extends Flight {
+
+}
+
+Now, for calling
+
+Flight[] arr = new Flight[] {
+   new Indigo(), new JetAirways(), new IAir()
+};
+
+Abstract class provides security to the classes, as once you fall in one abstract class another abstract class will not disturb you. 
+
+Interface : Java does not support the concept of multiple inheritance, to achieve this we need the help of interfaces.  Interface contains method declaration and the implementation can be done in the corresponding class, you can add more than one interface to the particular class. 
+
+Differences : 
+______________
+
+-> Abstract class contains abstract and non-abstract methods, where interface contains only abstract methods
+
+-> Interface methods are public and abstract by default.
+
+-> Multiple Inheritance can be achieved by using interfaces
+
+-> An interface can be called from anywhere to anywhere. 
+
+-> Interface variables are final by default. 
+
+*** Abstract class can be used to represent group of related classes, where interface can be used for specialization. ***
+
+
+
