@@ -1,0 +1,14 @@
+Circuit Breakers with Resilience4j, 
+Fallback Methods, 
+Timeouts, 
+Retry, 
+Rate Limiting, 
+Service Health Checks using Spring Boot Actuator
+
+
+bin\windows\kafka-topics.bat --bootstrap-server localhost:9092 --create --topic java-kafka-virtusa --partitions 1 --replication-factor 1
+
+
+bin\windows\kafka-console-producer.bat --bootstrap-server localhost:9092 --topic java-kafka-virtusa
+
+bin\windows\kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic java-kafka-virtusa --from-beginning
