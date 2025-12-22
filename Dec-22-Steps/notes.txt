@@ -1,0 +1,256 @@
+Steps to create inter-micro service example 
+____________________________________________
+
+1) Create a EurekaServer
+
+ <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+        </dependency>
+
+For the main class add the annotation as
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
+
+@SpringBootApplication
+@EnableEurekaServer
+public class EurekaNewApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(EurekaNewApplication.class, args);
+    }
+
+}
+
+application.properties
+_______________________
+
+server.port=8761
+eureka.client.register-with-eureka=false
+eureka.client.fetch-registry=false
+spring.cloud.config.import-check.enabled=false
+
+start app as it runs as 8761 port
+
+2) Now we need to make EmployClient Project to be deployed in EurekaServer
+
+   <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-mongodb</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+            <optional>true</optional>
+        </dependency>
+
+For Main class Add Annotation as
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+
+@SpringBootApplication
+@EnableDiscoveryClient
+public class SbEmployMongoApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(SbEmployMongoApplication.class, args);
+    }
+}
+
+Follow the remaining code.
+
+____________________________________________________________________
+
+Now, we need to make bonus table in another db
+
+use bonusdb;
+
+db.bonus.insertOne({"empno":1,"bonus":5000,"bonustype":"Pongal"});
+
+Step 3 : Create Sb Project as SbBonusExample and add the below Dependencies
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-mongodb</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+Step 4 : In application.properties write the below code as 
+
+server.port=8800
+spring.data.mongodb.uri=mongodb://localhost:27017/bonusdb
+
+Now Write a Config file and call the service as RestTemplateConfig.java 
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.client.RestTemplate;
+
+@Configuration
+public class RestTemplateConfig {
+
+    @Bean
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
+    }
+}
+
+Now in BonusService, please call the Employ Url and get employ object. and calculate bonus value based on that. 
+
+import com.example.dto.Employ;
+import com.example.model.Bonus;
+import com.example.repo.BonusRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
+@Service
+public class BonusService {
+
+    @Autowired
+    private BonusRepository bonusRepository;
+
+    private final RestTemplate restTemplate;
+
+    public BonusService(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
+
+    public String addBonus(Bonus bonus){
+        int empno = bonus.getEmpno();
+        String url = "http://localhost:9000/searchEmploy/{empno}";
+        Employ employ = restTemplate.getForObject(url, Employ.class, empno);
+        double bn = employ.getBasic() * 0.10;
+        bonus.setBonus(bn);
+        bonusRepository.save(bonus);
+        return "Bonus Added Successfully...";
+    }
+}
+
+Now, we need to deploy that in different server and Call 
+
+Create a SB Project as SbRestExample and add the below dependencies
+
+ 	<dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+Create RestTemplateConfig.java file and write code
+
+and in EmployService write the code to fetch from another service
+
+package com.example;
+
+import com.example.model.Employ;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
+import java.util.List;
+
+@Service
+public class EmployService {
+
+    private final RestTemplate restTemplate;
+
+    public EmployService(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
+
+    public List<Employ> showEmploy() {
+        String url = "http://localhost:9000/showEmploy";
+        List<Employ> employs = restTemplate.getForObject(url, List.class);
+        return employs;
+    }
+
+    public Employ searchEmploy(int empno) {
+        String url = "http://localhost:9000/searchEmploy/{empno}";
+        return restTemplate.getForObject(url, Employ.class, empno);
+    }
+
+    public String addEmploy(Employ employ) {
+        String url ="http://localhost:9000/addEmploy";
+        return restTemplate.postForObject(url, employ, String.class);
+    }
+}
+
+Write the code in Controller as
+
+package com.example;
+
+import com.example.model.Employ;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping(value="/employRt")
+public class EmployController {
+
+    @Autowired
+    private EmployService employService;
+
+    @GetMapping(value="/showEmploy")
+    public List<Employ> showRestClient(){
+        return employService.showEmploy();
+    }
+
+    @GetMapping(value="/searchEmploy/{empno}")
+    public Employ searchEmploy(@PathVariable int empno){
+        return employService.searchEmploy(empno);
+    }
+
+    @PostMapping(value="/addEmploy")
+    public String addEmploy(@RequestBody Employ employ){
+        return employService.addEmploy(employ);
+    }
+}
