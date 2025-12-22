@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var Harsh_1 = require("./Harsh");
+var Lokesh_1 = require("./Lokesh");
+var obj1 = new Harsh_1.Harsh();
+obj1.name();
+obj1.email();
+var obj2 = new Lokesh_1.Lokesh();
+obj2.name();
+obj2.email();

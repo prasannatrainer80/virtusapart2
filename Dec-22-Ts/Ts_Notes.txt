@@ -1,0 +1,28 @@
+How to use getter/setter in typescript
+
+Generics in typescript allows developers to create reusable components that can work with multiple data types while maintaining type safety. Generics are widely used in functions, classes, and interfaces for building reusable and adaptable code. 
+
+function function_name<type_parameter> {
+...
+...
+) : return_type_parameter {
+...
+...
+...
+}
+
+	An abstract class in TypeScript serves as a blueprint for other classes and cannot be instantiated directly. 
+
+   -> It may include abstract methods without implementation, which must be defined in any subclass. 
+
+   -> It contain concrete methods with implementations, properties and other members. 
+
+	Typescript interfaces define the structure of objects by specifying property types and method signatures, ensuring consistent shapes and enhancing code clarity. 
+
+Java volatile
+
+	Volatile is another way of making a thread-safe.  Thread-safe means that a method or class instance can be used by multiple threads at the same time without any problem.  
+
+
+
+
