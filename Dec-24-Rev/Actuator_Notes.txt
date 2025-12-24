@@ -1,0 +1,24 @@
+In Spring Boot Microservices, the standard way to check the health of microservice is by using Spring Boot Actuator. THis is Industry-standard
+
+There are 3 basic features of Spring Boot Actuator :
+
+  -> EndPoints
+
+  -> Metrics : SB Actuator provides dimensional metrics by integrating with the micrometer. 
+
+  -> Autdit : Sb provides flexible audit framework that publishes events to Repo.
+
+Endpoint : ALlows us to monitor and interact with the application, SB provides noof built-in endpoint, we can also create out own endpoint. 
+
+The pre-defined endpoints are 
+
+/health : Displays the health status of sb
+/metrics : Provides details info about the sb
+/loggers : Allows querying and modifying logging levels
+/beans : Lists all spring beans in the application
+/threaddump : Performs a thread dump of the JVM.
+
+
+
+
+
