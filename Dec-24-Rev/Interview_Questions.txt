@@ -1,0 +1,491 @@
+1) What is Object Oriented Programming 
+
+    It is an approach that provides a way of modularizing programming, that which can be used to create small partition memory area for both data and objects, which are to be used as templates for creating copies of such modules on demand. 
+
+Object : An object is a real world entity, that which possess 3 characterstics known as 
+
+	(I) State
+
+	(ii) Behaviour
+
+	(iii) Identity 
+
+OOPS features : 
+_______________
+
+   -> Encapsulation : Wrapping up of data and functions into a single unit known as 		encapsulation.
+
+   -> Abstraction : Hiding the irrelevant details of an object, that do not contribute to its essential characterstics known as abstraction. 
+
+*** Encapsulation focuses on showing the relevant details, where abstraction focuses on hiding the irrelevant details ***
+
+   -> Inheritance : Deriving a new entity from already existing entity known as inheritance, through inheritance we can reduce the size of the program. 
+
+   -> Polymorphism : The ability to take more than one form known as polymorphism. 
+
+class : A class is template or blueprint, which contains combination of data members and member functions.  Members of the class can be accessable by using instance of the class. 
+
+class class_name
+{
+    data members;
+    member functions;
+}
+
+Members of the class can be accessable by using the instance of the class. 
+
+What is Package 
+
+A package contains group of classes and interfaces, that which belongs to one common group. If you want to overcome the naming conflicts between classes then we need the help of packages. 
+
+What is Garbage Collection
+
+	It is an automatic memory management process that helps java programs run efficiently. 
+
+	-> Objects are created on heap area.
+	
+	-> Eventually, some objects will no longer be needed
+
+	-> Garbage collection is an automatic process that removes unused objects 		from heap.
+
+Explain JVM Architecture in detail (JVM)
+
+Contains various components as 
+
+	   (i) Class Loader : Used to load the classes that which are required to run the program.  There are 2 types of class loaders known as 
+
+		(a) Primordial Class Loader : Used to load all system defined classes which required to run the program.
+
+		(b) Class Loader Objects : Used to load all user-defined classes which required to run the program. 
+
+	(ii) JIT (Just-In Time) : Converts bytecode into CPU specific format. 
+
+       (iii) Execution Manager : Contains QUEUE of programs which are ready to run, where we can execute the program, Before execution needs to undergone the security authentication. 
+
+    What is static variable 
+
+	These are class variables, which retains values irrespective of type of object. These variables will be stored in heap memory. 
+
+   What is the top level class in java Object 
+
+   What is the default package in java --> java.lang 
+
+   What is the difference between == and equals() methods
+
+	String str1="ABC", str2="ABC";
+	System.out.println(str1==str2);
+	System.out.println(str1.equals(str2));
+
+   What is Constructor 
+
+	A constructor is a special member used to initilize the member variables of the class, it is special because it has the same name as that of class name. 
+
+      Rules : 
+      _______
+
+	(i) It will not contains any return type
+
+       (ii) It will not return any value
+
+      (iii) It will be invoked automatically once the instance of the class 
+		created.
+
+    
+   What is Method overloading : The concept of using the same method name w.r.t. different data types or different parameters known as method overloading.  Here, the method name must be same, but no.of parameters or type of parameters we are using here are different. 
+
+_______________________________________________________________
+
+class First {
+    public void show(int x) {
+	System.out.println("Int " +x);
+    }
+    public void show(double x) {
+	System.out.println("Double " +x);
+    }
+    public void show(String x) {
+	System.out.println("String  " +x);
+    }
+
+    public static void main(String[] args) {
+	int x=12;
+	First obj = new First();
+	obj.show(x);
+    }
+}
+
+
+class First {
+    public void show(double x) {
+	System.out.println("Double " +x);
+    }
+    public void show(Object x) {
+	System.out.println("Object  " +x);
+    }
+
+    public static void main(String[] args) {
+	int x=12;
+	First obj = new First();
+	obj.show(x);
+    }
+}
+
+______________________________________________________________________
+
+class First {
+
+    public void show(long x) {
+	System.out.println("Long  " +x);
+    }
+
+    public void show(double x) {
+	System.out.println("Double " +x);
+    }
+    public void show(Object x) {
+	System.out.println("Object  " +x);
+    }
+
+    public static void main(String[] args) {
+	int x=12;
+	First obj = new First();
+	obj.show(x);
+    }
+}
+
+______________________________________________________________________
+
+class Hello {
+	static {
+	   System.out.println("Bye");
+        }
+	Hello() {
+	   System.out.println("Hello");
+       }
+       public static void main(String[] args) {
+	   new Hello();
+       }
+}
+
+_________________________________________________________________________
+
+public class Test extends String {
+	public static void main(String[] args) {
+	  System.out.println("Strings are immutable...");
+        }
+}
+
+___________________________________________________________________________
+
+In java, static class refers specifically to static nested class, which is a class defined insdie another class with the static modifier.  Unlike a regular inner class, a static nested class does not require an instance of the outer class to be instantiated. 
+
+_____________________________________________________________________________
+
+class First {
+	public void show(int x) {
+	  System.out.println("Int " +x);
+        }
+}
+class Second extends First {
+	public int show(int x) {
+	   return 5;
+        }
+}
+class Final {
+	public static void main(String[] args) {
+	    new Second().show(12);
+	}
+}
+
+__________________________________________________________________________
+
+Abstract Class : A class that which can be created, but not implemented and instantiated known as abstract class.  Abstract class contains abstract and non-abstract methods, abstract methods needs to be overrided mandatorily by the derived class. 
+
+Interface : An interface contains the method declaration, and the implementation can be done in the corresponding class, you can add more than one interface to the particular class. 
+
+  -> Abstract class contains abstract and non-abstract methods, where interface contains only abstract methods
+
+  -> Interface methods are public and abstract by default.
+
+  -> Multiple Inheritance can be achieved by using interfaces
+
+  -> An interface can be called from anywhere to anywhere. 
+
+Why default methods came in interface ???
+
+interface IOne {
+   void show();
+}
+
+interface ITwo {
+   void show();
+}
+
+interface IThree {
+   void show();
+}
+
+class Hello implements IOne, ITwo, IThree {
+
+}
+
+3) What is Collections 
+
+Arrays are static data structures, ensures once assigned we cannot alter the size, if you want to add the elements dynamically irrespective of size, then we need the help of collections.  Collections can grow to any size unlike arrays. 
+
+The top level interfaces of collection framework are : 
+_______________________________________________________
+
+List : This interface allows you to add elements in sequential order. Here we have ArrayList, Vector classes are falling under List interface. 
+
+Set : Allows you to eliminate duplicate entries from the given collection. HashSet and LinkedHashSet are falling under Set interface. 
+
+SortedSet : This interface derived from Set interface used to display elements in sorted order.  TreeSet is falling under Set interface. 
+
+Map interface : Allows you to store data w.r.t. Key/Value pairs.  HashTable and HashMap are falling under Map interface. 
+
+1) Write a program using HashTable, store username/password and authenticate and give me correct credentails/not correct credentials
+
+____________________________________________________________________________
+
+
+1) Write a program to read a string and reverse alternate words and print it
+
+2) Write a Program to Convert binary to decimal (including decimal values)
+
+3) Write a program to print all palindrome words in the given sentence
+
+4) Write a Program to Display a number in English words as (1234 means 
+one thousand two hundred and thirty four) (take upto 4 digits only)
+
+5) Write the internal implementation of Integer.parseInt() method
+
+_____________________________________________________________________________
+ 
+Exception Handling : It is a mechanism of handling the runtime errors during the execution of the program. There are 2 types of errors known as 
+
+	(I) Compile Time
+
+       (II) Runtime 
+
+By using Exception Handling, we can overcome the runtime errors. 
+
+To handle exceptions, we have 3 blocks as
+
+1) try block : This block contains statements in which there is possibility of getting error, the statement(s) which are placed in this block are treated as heavy weighted statement(s) as JVM allocates excess memory to them. 
+
+2) catch block : Once exception raised in try block, then the control will be forwarded to catch block, this block contains alternate statement(s) for exceptions raised in try block.  One try block can contains multiple catch blocks. 
+
+3) finally block : This block contains statement(s) that needs to be executed mandatorily irrespective of try and catch blocks, this block is not mandatory, but all the statement(s) which are placed in this block are executed as mandatory statement(s).
+
+Exception is the top most class, from which all kinds of exceptions are derived. 
+
+-- Write a program for division of 2 numbers 
+
+throws keyword : If you want to handle exceptions at method level, then we need the help of throws keyword. 
+
+throw : Used to raise any exception object. 
+
+throws will be at method level, throw will be at code level
+
+throws will be used raise Exception class, where throw used to raise Exception object.
+
+Why User-defined Exceptions we need to handle 
+
+System exceptions are inadequate to handle in all situations, to overcome this we need the help of custom exceptions.  Any class, that which derived from Exception class can be treated as custom exception class. 
+
+Write a program to accept a number, if number < 0 then raise NumberZeroException, if number = 0 then raise NegativeException 
+
+What is Streams : 
+_________________
+
+Streams API in java provides a functional and declarative way to process collections of data.  It allows developers to perform operations such as filtering, mapping, reducing, and collecting data without writing complex loops. Streams are not data structures but pipelines of computations that process data from a source.
+
+Main Intermediate Operations on Streams : 
+
+Intermediate operations transform a stream into another stream are 
+
+filter() 
+
+map()
+
+sorted()
+
+distinct()
+
+For that code try 
+
+filter
+
+map()
+sorted()
+distinct() examples 
+
+
+Default Methods are defender methods, allowing methods with a body (implementation). This makes interfaces more flexible and backward-compatible. 
+
+Key Features 
+_____________
+
+	-> Interfaces can now have both abstract and default methods
+
+	-> Default methods provide backward compatibility without breaking existing
+		code
+
+	-> They allow API evolution and support new features like steams and lambdas
+
+What is Lambda Expression : Allows developers to write concise, functional-style code by representing anonymous functions.  They enable passing code as parameters or assigning to variables. It is similar to macros concept in c/c++. resulting in cleaner and more readable programs. 
+
+	-> Lambda expressions implement a functional interface
+
+	-> Enable passing code as data (method arguments)
+
+	-> Allow defining behaviour without creating separate classes 
+
+interface IOne {
+   void show();
+}
+
+class First implements IOne {
+  public void show() {
+    ...
+    ...
+  }
+}
+
+class Second implements ITwo {
+    public void show() {
+	...
+	...
+    }
+}
+
+IOne[] arr = new IOne[] {
+    new First(),
+    new Second()
+};    
+
+// Above code we need to write by using Lambda Expression, then 
+
+IOne obj1 = () -> System.out.println("Hello World...!");
+
+IOne obj2 = () -> System.out.println("Welcome to Java Programming...!");
+
+obj1.show();
+obj2.show();
+
+What is Functional Interface : 
+
+An interface contains exactly only one abstract method known as functional interface.  You can define functional interface by using @FunctionalInterface annotation. 
+
+@FunctionalInterface
+interface ICalculation {
+    int calc(int a, int b);
+}
+
+Will Functional Interface contains default methods ???
+
+Why use Lambda Expressions ?
+   
+  -> Concise Code : Reduce boilerplate compared to anonymous classes.
+  -> Functional Programming : Treat functions as first-class citizens
+  -> Improve Readability
+  -> Enhanced Collections and Streams 
+
+Can we define some pre-defined interfaces where functional interface concept used 
+
+Comparator
+Runnable
+
+Predicate
+
+Consumer
+
+Supplier 
+
+Method References : In java, a method is a collection of statements that perform some specific tasks and return the result to the caller.  A method reference is the shorthand syntax for a lambda expression that contains just one method call. 
+
+How the way variables are mapped, same way we need to map the methods, then the concept of method reference came into the picture. 
+
+In Method reference, we can use method as if they were objects or primitive values, and we can treat them as a variable. 
+
+Types of Method References 
+___________________________
+
+    1. Static Method Reference
+ 
+    2. Instance Method Reference of a particular object
+
+    3. Instance Method Reference of a arbitrary object of a particular type
+
+    4. Constructor Reference 
+
+
+What is Optional Class 
+
+Java 8 introduced Optional class in java.util package to handle the problem of null values more gracefully. Instead of risking NullPointerException (NPE), Optional provides a container object that may or may not hold a non-null value. 
+
+public class OptionalDemo {
+   public static void main(String[] args) {
+	String[] words = new String[10];
+	System.out.println(words[5]);	
+   }
+}
+
+The above code we need to handle by using Optional  as
+
+Optional<String> checkNull = Optional.ofNullable(words[5]);
+if (checkNull.isPresent()) {
+    System.out.println(words[5]);
+} else {
+    System.out.println("Word is Null...");
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
