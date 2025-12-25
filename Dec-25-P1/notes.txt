@@ -1,0 +1,221 @@
+What is Spring 
+
+Spring is a light-weight open source framework for building enterprise-level java applications. It simplifies development by providing support for dependency injection (DI), Aspect Oriented Programming, Transaction Management and integration with various frameworks. 
+
+What is Dependency Injection 
+
+
+
+It is a design pattern that helps in achieving loose coupling between classes by injecting dependencies from an external source rather than creating them within the class.  This pattern is a core feature of the Spring Framework, provided by the spring IOC. 
+
+There are 2 types of DI as 
+
+(I) Constructor Injection : Dependencies are injected through the constructor, This method ensures that the dependencies are provided at the time of object creation, making the object immutable and ensuring that all required dependencies are available. 
+
+
+(ii) Getter/Setter Injection : Dependencies are injected through setter methods, this method allows for optional dependencies and provides flexibility in changing the dependencies at runtime. 
+
+DI can be done in 2 ways as 
+
+(I) BeanFactory
+
+(ii) ApplicationContext : Is a central interface in Spring Framework, responsible for providing configuration for an application, it is a sub-interface of BeanFactory and offers all functionalities of BeanFactory along with additional enterprise-specific features. 
+
+ApplicationContext ctx = new ClassPathXmlApplicationContext("com/java/spr/Bean.xml");
+
+Features of ApplicationContext : 
+
+
+   DI -> Manages the lifecycle of beans and their dependencies
+
+  Event publishing : Supports publishing events to registered listeners
+
+  Internationalization : Resolves messages and supports internationalization
+
+  Resource Loading : Loads file resources in a generic fashion.
+
+Spring Boot is a project that is built on top of spring framework, provides an easier and faster way to set up, configure and run both simple and web-based applications. 
+
+It contains combination of 
+
+Spring Framework + Embedded HTTP Servers (Tomcat) - (XML <bean> Configuration) = Spring Boot
+
+Why to use Spring Boot Because : 
+
+	-> DI approach used in Spring Boot
+	
+	-> Contains powerful database transaction management capabilities
+
+	-> Simplifies integration with other java frameworks like JPA/Hibernate ORM
+
+	-> Reduces the cost and development time of the application.
+
+To ensure any Spring Boot Application, 
+@SpringBootApplication which allows you to read package information, Get Configuration info automatically as easier to make and configure application to run faster 
+
+It consolidates 3 critical spring annotations 
+
+	-> @SpringBootConfiguration
+
+	-> @EnableAutoConfiguration
+
+	-> @ComponentScan
+
+
+Auto-Configuration : Automatically configures components based on the libraries in the classpath, reducing manual setup
+
+Component Scanning : Automatically detects and registers beans, services and controllers, simplifying di.
+
+Readability : Clearly identifies the main class and entry point of the application.
+
+Rapid Development : Eliminates repetitive configuration, allowing developers to focus on business logic.
+
+What is 
+
+@Component : It is a class level annotation used to denote a class as a Component. We can use @Component across the application to make the beans as Spring's Managed components. A component is responsible for some operations, 
+
+	
+
+@Repository : Used to indicate that the class provides the mechanism for storage, retrieval, update and delete, search operation on objects. Spring Repository classes are auto-detected by the Spring Framework through classpath scanning. This annotation is a general-purpose sterotype annotation which very close to DAO pattern.  DAO classes are responsible for providing CRUD operations in database tables. 
+
+@Service
+
+	In an application, the business logic resides within the service layer so we can use the @Service annotation to indicate that the class belongs to that layer. It is specialization of @Component annotation, One most imp thing about that @Service annotation is that it can be applied only to classes.  Used to mark the class as a service provider. @Service annotation used with classes that provide some business functionalities.  Spring Context will autodetect these classes when annotation-based configuration and classpath scanning used.
+
+@Controller
+
+  Spring @Controller annotation applied on classes to make the class as a web request handling, mostly used in Spring MVC applications, this annotation acts as a stereotype for the annotated class. 
+
+@RestController : This annotation used for Restful API (returning JSON/XML responses)
+
+@RestController annotation used for making restful web services
+
+This annotation used at the class level and allows the class to handle the requests made by the client. RestController allows to handle all REST APIs such as GET, POST, PUT, DELETE requests
+
+JWT (Json Web Token) 
+
+	
+Authentication : Any request can be accessed after specifying proper username/password.
+
+Authorization : Once authenticated user has permission to access the particular resource or not comes with authorization. 
+
+JWT is a open standards that defines a self-contained way for securely transmitting information between parties as a JSON object.  This information can be verified and trusted because it digitally signed. 
+
+JWT contains main 3 main parts known as 
+
+(I) Header
+
+(II) Payload
+
+(iii) Signature 
+
+Header typically consists of 2 pars as type of token, and which algorithm we are using for that purpose 
+
+{
+   "alg":"HS256",
+   "typ":"JWT"
+}
+
+Payload is the second part of the token which contains statements about an entity and additional data 
+
+It contains 
+
+public claims
+
+registered claims
+
+private claims 
+
+Signature : 
+
+	To create the signature part you have to take the encoded header, the encoded payload, 
+
+To transfer the message from server-client then this signature takes vital role.
+
+
+How JWT Works 
+
+When user successfully logged in JWT will be returned. When user wants to access the protected resources, he needs to pass the JWT typically in Authorization header using the Bearer Schema, The content of the header should look like 
+
+Authoration : Bearer <Token>
+
+
+- The application requests the authorization server, this is performed through one of the different authorization flows, 
+
+- Once authorization granted, the authorization server returns an access token to the application
+
+- The application uses the access token to access protected resource 
+
+
+eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJQcmFzYW5uYSIsImlhdCI6MTc2NTI4MDE4NywiZXhwIjoxNzY1MjgxOTg3fQ.zh3drly6yeoCr1L6_MRNGNSsqkSs9LAz_4uWOOA3DlI
+
+Execution Steps : 
+_________________
+
+
+Post Method : 
+
+http://localhost:1133/auth/addNewUser
+
+{body}
+
+{
+ "name":"Karthik",
+ "password":"Karthik",
+ "email":"Karthik@gmail.com",
+ "roles":"ROLE_ADMIN"
+}
+
+Then user added with encr. passcode
+
+Post Method :
+
+http://localhost:1133/auth/generateToken
+
+{body}
+
+{
+    "username": "Karthik",
+    "password": "Karthik"
+}
+
+Then JWT token generated (Example)
+eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJQcmFzYW5uYSIsImlhdCI6MTc2NTI4MDE4NywiZXhwIjoxNzY1MjgxOTg3fQ.zh3drly6yeoCr1L6_MRNGNSsqkSs9LAz_4uWOOA3DlI
+
+
+To access the admin_resource 
+
+GET
+
+http://localhost:1133/auth/admin/adminProfile
+
+{Authorization}
+
+{Bearer Token} Pass jwt in textbox 
+
+
+Then you can get the output.
+
+________________________________________________________________________
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
