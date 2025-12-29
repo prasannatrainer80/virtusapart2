@@ -1,0 +1,18 @@
+In Java, the storage location of static variables depends on the JVM version:
+
+Before Java 8 (Java 7 and earlier)
+
+Static variables were stored in the Method Area, which was part of the PermGen (Permanent Generation) space in JVM memory.
+
+The PermGen space had a fixed size and could cause OutOfMemoryError: PermGen space if too many classes or static data were loaded.
+
+Java 8 and Later
+
+Static variables are now stored in the Heap (not in Metaspace).
+Metaspace stores class metadata (information about the class structure, methods, etc.), but the actual static variable values live in the Java Heap.
+
+Key Points
+
+Static variables are created when the class is loaded by the ClassLoader.
+They exist once per class, shared by all instances.
+They are destroyed only when the class is unloaded (usually when the JVM shuts down or the classloader is garbage collected).

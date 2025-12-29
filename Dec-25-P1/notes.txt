@@ -198,6 +198,22 @@ Then you can get the output.
 
 ________________________________________________________________________
 
+Microservice : 
+
+     Microservice is style used to build applications, where no.of small services forms one big service, where the services are reused whenever we want. 
+
+How Microservices Work 
+
+    -> Application is fragmented into loosely coupled various modules, each of which performs a distinct function
+
+    -> It is distributed across clouds and data centers
+
+    -> Each application module is an independent service/process that can be replaced, updated or deleted without disrupting the rest of application
+
+    -> Under microservice architecture, an application can grow along with its requirements. 
+
+Identify where we can deploy our microservice and what is the process we need to follow 
+
 
 
 
