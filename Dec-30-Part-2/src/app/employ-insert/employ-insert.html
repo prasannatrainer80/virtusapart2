@@ -1,0 +1,30 @@
+<p>employ-insert works!</p>
+
+Employ No : 
+<input type="number" name="empno" 
+        required [(ngModel)]="employ.empno"
+    #empno="ngModel" /> <br/>
+Employ Name : 
+    <input type="text" name="name" 
+        required [(ngModel)]="employ.name"
+    #name="ngModel" /> <br/>
+Gender : 
+    <input type="text" name="gender" 
+        required [(ngModel)]="employ.gender"
+    #gender="ngModel" /> <br/>
+
+Department : 
+    <input type="text" name="dept" 
+        required [(ngModel)]="employ.dept"
+    #dept="ngModel" /> <br/>
+Designation : 
+    <input type="text" name="desig" 
+        required [(ngModel)]="employ.desig"
+    #desig="ngModel" /> <br/>
+Basic : 
+    <input type="number" name="basic" 
+        required [(ngModel)]="employ.basic"
+    #basic="ngModel" /> <br/>
+
+<input type="button" value="Insert" (click)="addEmploy()" /> <br/>
+{{result}}
