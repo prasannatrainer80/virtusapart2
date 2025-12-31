@@ -1,0 +1,35 @@
+<!-- <p>login works!</p>
+
+User Name : 
+
+<input type="text" name="user" [(ngModel)]="user" /> 
+<br/><br/>
+Password : 
+<input type="password" name="pwd" [(ngModel)]="pwd" />
+<br/><br/>
+<input type="button" value="Login" (click)="login()" /> -->
+
+<p>login-form works!</p>
+<form #loginForm="ngForm" (ngSubmit)="doLogin(loginForm)">
+    User Name : 
+    <input type="text" name="username"
+        [(ngModel)]="auth.username" required #username="ngModel" /> 
+    <div *ngIf="username.invalid && loginForm.submitted && !isvalid">
+        <p style="color: red;">
+            Please Enter User Name...
+        </p>
+    </div>
+    <br/><br/>
+    User Name : 
+    <input type="password" name="passcode"
+        [(ngModel)]="auth.passcode" required #passcode="ngModel" /> 
+    <div *ngIf="passcode.invalid && loginForm.submitted && !isvalid">
+        <p style="color: red;">
+            Please Enter Password...
+        </p>
+    </div> <br/><br/>
+    <input type="submit" value="Login" />
+</form> <br/><hr/>
+<p style="color: red;">
+    {{error}}
+</p>
