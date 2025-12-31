@@ -1,0 +1,50 @@
+<p>register-form works!</p>
+<form [formGroup]="registerForm" (ngSubmit)="submit()">
+  <div>
+    Name :
+    <input type="text" formControlName="name" />
+
+    <!-- REQUIRED error -->
+    <div *ngIf="registerForm.get('name')?.errors?.['required'] && isValid == false">
+      <p style="color:red;">
+        Name is required
+      </p>
+    </div>
+
+    <!-- MIN LENGTH error -->
+    <div *ngIf="registerForm.get('name')?.errors?.['minlength'] && isValid == false">
+      <p style="color:red;">
+        Name must be at Minimum 3 characters
+      </p>
+    </div>
+    <div *ngIf="registerForm.get('name')?.errors?.['maxlength'] && isValid == false">
+        <p style="color: red;">
+            Name Contains Max 10 characters 
+        </p>
+    </div>
+     <div *ngIf="registerForm.get('name')?.errors?.['OnlyLetters'] && isValid == false">
+        <p style="color: red;">
+           Name contains only Alphabets...
+        </p>
+    </div>
+  </div> <br /><br />
+  Email : 
+    <input type="email" formControlName="email" />
+
+    <!-- REQUIRED error -->
+    <div *ngIf="registerForm.get('email')?.errors?.['required'] && isValid == false">
+      <p style="color:red;">
+        Email is required
+      </p>
+    </div>
+
+    <div *ngIf="registerForm.get('email')?.errors?.['email'] && isValid == false">
+        <p style="color: red;">
+            Invalid Email 
+        </p>
+    </div>
+<br/><br/>
+   
+  
+  <input type="submit" value="Add" />
+</form>

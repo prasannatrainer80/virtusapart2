@@ -1,0 +1,46 @@
+<p>employ-mdf-new works!</p>
+<form [formGroup]="employForm" (ngSubmit)="addEmploy()">
+    Employ No : 
+    <input type="number" formControlName="empno" />
+    <div *ngIf="employForm.get('empno').invalid && isValid == false">
+        <p style="color: red;">
+            Please Enter Employ Number...
+        </p>
+    </div> <br/><br/>
+    Employ Name : 
+    <input type="text" formControlName="name" />
+    <div *ngIf="employForm.get('name').invalid && isValid == false">
+        <p style="color: red;">
+            Please Enter Employ Name...
+        </p>
+    </div> <br/><br/>
+    Gender : 
+    <input type="text" formControlName="gender" />
+    <div *ngIf="employForm.get('gender').invalid && isValid == false">
+        <p style="color: red;">
+            Please Enter Employ Gender...
+        </p>
+    </div> <br/><br/>
+    Department : 
+    <input type="text" formControlName="dept" />
+    <div *ngIf="employForm.get('dept').invalid && isValid == false">
+        <p style="color: red;">
+            Please Enter Employ Department...
+        </p>
+    </div> <br/><br/>
+    Designation : 
+    <input type="text" formControlName="desig" />
+    <div *ngIf="employForm.get('desig').invalid && isValid == false">
+        <p style="color: red;">
+            Please Enter Employ Designation...
+        </p>
+    </div> <br/><br/>
+    Basic : 
+    <input type="number" formControlName="basic" />
+    <div *ngIf="employForm.get('basic').invalid && isValid == false">
+        <p style="color: red;">
+            Please Enter Employ Salary...
+        </p>
+    </div> <br/><br/>
+    <input type="submit" value="Show" />
+</form>
