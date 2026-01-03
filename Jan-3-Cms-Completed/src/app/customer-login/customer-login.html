@@ -1,0 +1,22 @@
+<p>customer-login works!</p>
+<p>login-form works!</p>
+<form #loginForm="ngForm" (ngSubmit)="doLogin(loginForm)">
+    User Name : 
+    <input type="text" name="username"
+        [(ngModel)]="customer.cusUsername" required #cusUsername="ngModel" /> 
+    <div *ngIf="cusUsername.invalid && loginForm.submitted && !isvalid">
+        <p style="color: red;">
+            Please Enter User Name...
+        </p>
+    </div>
+    <br/><br/>
+    User Name : 
+    <input type="password" name="passcode"
+        [(ngModel)]="customer.cusPassword" required #cusPassword="ngModel" /> 
+    <div *ngIf="cusPassword.invalid && loginForm.submitted && !isvalid">
+        <p style="color: red;">
+            Please Enter Password...
+        </p>
+    </div> <br/><br/>
+    <input type="submit" value="Login" />
+</form>
