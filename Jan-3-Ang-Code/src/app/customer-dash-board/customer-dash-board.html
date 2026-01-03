@@ -1,0 +1,7 @@
+<p>customer-dash-board works!</p>
+<a [routerLink]="['/customerDashBoard',{outlets:{'virtusa':['customerInfo']}}]">Customer Info</a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a [routerLink]="['/customerDashBoard',{outlets:{'virtusa':['customerShow']}}]">Customer Show</a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<hr/>
+<router-outlet name="virtusa"></router-outlet>
